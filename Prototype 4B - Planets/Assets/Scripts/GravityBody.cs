@@ -4,8 +4,9 @@ using System.Collections;
 [RequireComponent (typeof (Rigidbody))]
 public class GravityBody : MonoBehaviour {
 	
-	GravityAttractor planet;
-	Rigidbody rigidbody;
+	public GravityAttractor planet;
+	public Rigidbody rigidbody;
+	
 	
 	void Awake () {
 		planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttractor>();
@@ -20,4 +21,15 @@ public class GravityBody : MonoBehaviour {
 		// Allow this body to be influenced by planet's gravity
 		planet.Attract(rigidbody);
 	}
+	
+    private void OnCollisionEnter(Collision collision)
+    {
+		if (collision.collider.CompareTag("Friendly Planet"))
+		{
+			planet = collision.collider.gameObject.GetComponentInParent<GravityAttractor>();
+			
+
+
+		};
+    }
 }
