@@ -7,6 +7,9 @@ TagManager:
   - CinemachineTarget
   - Friendly Planet
   - Planet
+  - death
+  - alien
+  - playa
   layers:
   - Default
   - TransparentFX
