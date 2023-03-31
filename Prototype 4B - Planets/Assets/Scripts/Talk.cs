@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Talk : MonoBehaviour
 {
+    public GameObject textBox;
     // Start is called before the first frame update
     void Start()
     {
