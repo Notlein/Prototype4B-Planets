@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent (typeof (GravityBody))]
 public class FirstPersonController : MonoBehaviour {
@@ -28,7 +29,23 @@ public class FirstPersonController : MonoBehaviour {
 	}
 	
 	void Update() {
-		
+
+		// Map
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			if(GameObject.FindGameObjectWithTag("map").gameObject.GetComponent<Image>().enabled != true)
+            {
+				GameObject.FindGameObjectWithTag("map").gameObject.GetComponent<Image>().enabled = true;
+
+			} else
+            {
+				GameObject.FindGameObjectWithTag("map").gameObject.GetComponent<Image>().enabled = false;
+
+			}
+
+		}
+
+
 		// Look rotation:
 		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivityX);
 		verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY;
