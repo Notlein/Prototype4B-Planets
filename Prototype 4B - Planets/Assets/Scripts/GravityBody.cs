@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 [RequireComponent (typeof (Rigidbody))]
 public class GravityBody : MonoBehaviour {
-	
+	public int mode;
 	public GravityAttractor planet;
 	public Rigidbody rigidbody;
 	public GameObject lastplanet;
@@ -12,7 +12,8 @@ public class GravityBody : MonoBehaviour {
 	public int score;
 	
 	void Awake () {
-		planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttractor>();
+		
+		//planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttractor>();
 		score = 0;
 		variable_score.GetComponent<TextMeshProUGUI>().text = score + "";
 		rigidbody = GetComponent<Rigidbody>();
@@ -24,6 +25,7 @@ public class GravityBody : MonoBehaviour {
 
     private void Update()
         {
+		
 		if (Input.GetKeyDown(KeyCode.R)) {
 			var death = new death();
 			death.Die();
@@ -39,12 +41,12 @@ public class GravityBody : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-		if (other.CompareTag("alien") && gameObject.CompareTag("Player"))
+		if (other.CompareTag("alien") && gameObject.CompareTag("Player") && mode == 0)
 		{
 			other.gameObject.GetComponentInChildren<TextMeshPro>().enabled = true;
 			
 		}
-		if (other.CompareTag("pickup") && gameObject.CompareTag("Player"))
+		if (other.CompareTag("pickup") && gameObject.CompareTag("Player") && mode == 0)
 		{
 			Destroy(other.gameObject);
 			score++;
@@ -61,7 +63,7 @@ public class GravityBody : MonoBehaviour {
 			collision.collider.gameObject.GetComponentInChildren<TextMesh>().gameObject.SetActive(true);
 		}
 		*/
-			if (collision.collider.CompareTag("Friendly Planet"))
+			if (collision.collider.CompareTag("Friendly Planet") && mode == 0)
 		{
 			lastplanet.GetComponent<AudioSource>().Pause();
 			planet = collision.collider.gameObject.GetComponentInParent<GravityAttractor>();

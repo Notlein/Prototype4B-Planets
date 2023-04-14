@@ -15,6 +15,7 @@ TagManager:
   - variable
   - ui
   - spaceship
+  - map
   layers:
   - Default
   - TransparentFX
